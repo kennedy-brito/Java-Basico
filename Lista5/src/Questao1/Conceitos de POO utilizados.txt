@@ -1,0 +1,16 @@
+Classe abstrata: a classe Funcionario é uma classe abstrata pois todas as classes que herdam dela
+		 devem seguir um padrão de métodos possuídos.
+
+Encapsulamento:	usado na classe Funcionario e nas classes que herdam dela, foi utilizado para prevenir
+		que o usuário não tenha acesso direto aos atributos das classe, apenas aos permitidos 
+		com o uso de métodos públicos(getters e setters)
+
+Herança: Utilizado para que as classes Gerente, Assistente e Vendedor herdem métodos e atributos da superclasse
+	 Funcionario
+
+sobreescrita: todas as classes que herdam de Funcionario possuem métodos diferentes de realizar a função
+	      calculaSalario() , então, ao invés de criar uma função diferente, foi feita uma sobreescrita dessa função.
+
+Polimorfismo: foi utilizado para que cada objeto da lista de funcionários (Funcionario funcionarios[]) fosse tranformado
+	      no tipo de objeto correto (Gerente, Vendedor ou Assistente), para que não houvesse erro na versão do método
+	      calculaSalario() utilizado 

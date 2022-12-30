@@ -1,0 +1,9 @@
+Resultado do método Main:
+    Ator feliz!
+    Ator triste!
+
+Principais conceitos utilizados:
+    encapsulamento;
+    abstração;
+    herança;
+    polimorfismo;

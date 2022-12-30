@@ -1,0 +1,6 @@
+Exceções checadas:
+    
+
+Exceções não-checadas:
+
+

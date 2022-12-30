@@ -1,0 +1,3 @@
+    Significa fornecer ações alternativas ao programa em resposta
+ao erro, podendo ser, geralmente, informa que o erro aconteceu ao
+usuário e pode também explicar como resolver. 

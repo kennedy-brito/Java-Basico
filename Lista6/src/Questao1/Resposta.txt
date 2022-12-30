@@ -1,0 +1,2 @@
+    As exceções são objetos que descrevem um erro, indicando a causa
+do erro, a linha de código onde o erro aconteceu, e outras informações.
