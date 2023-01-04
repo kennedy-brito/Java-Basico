@@ -1,0 +1,11 @@
+try:
+    esse é o bloco a ser executado e onde pode gerar um erro.
+
+catch: 
+    esse é o bloco a ser executado quando acontece o erro,
+    podendo o programa explicar mais do erro que aconteceu ou
+    tomar outras ações.
+
+finaly:
+    esse bloco sempre será executado, independente se houve erro
+    ou não no código.
