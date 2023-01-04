@@ -1,6 +1,11 @@
 Exceções checadas:
-    
+    São erros que o próprio compilador identifica e avisa ao usuário que eles podem 
+    ocorrer, como na leitura de um arquivo, o compilador obriga o programador a tratar
+    um possível erro, que é a possibilidade do arquivo não existir.
+    Esses erros impedem que o programa seja compilado.
 
 Exceções não-checadas:
-
+    São erros mais simples de se resolver e não impedem a compilação do programa,
+    por exemplo na divisão de dois números, se o divisor informado for 0, gera um
+    erro, porém o programa compilou normalmente, apenas na execução o erro ocorreu.
 
