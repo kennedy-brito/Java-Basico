@@ -1,0 +1,8 @@
+    O throw new lança uma exceção, por exemplo, se meu programa deve ler 
+apenas números positivos, caso o usuário digite um número negativo
+eu posso lançar um throw new Exception que informa ao usuário que ele
+deve digitar apenas números positivos.
+    Esses erros lançados pelo throw são úteis pois ao serem lançados
+encerram o restante do programa, como funções e o bloco try.
+    Além disso, essas exceções lançadas pelo throw new são pegas no bloco
+catch.

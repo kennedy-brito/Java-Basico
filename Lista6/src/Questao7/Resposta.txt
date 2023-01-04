@@ -1,0 +1,5 @@
+    o throws é uma palavra reservada que indica que aquela parte do código pode
+lançar uma exceção, geralmente é usado para o tratamento de exceções checadas,
+como o IOException.
+    Quando se usa o throws, quem faz o tratamento dessa exceção não é o programador
+e sim o próprio Java. O programador apenas informa que o erro pode acontecer.
