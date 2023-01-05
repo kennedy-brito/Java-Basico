@@ -14,28 +14,30 @@ public class Questao10 {
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
 
-        int qnt, x, y;
+        int qnt, x, y = 0;
 
-        System.out.println("Digite qunatas vezes deseja somar");
+        System.out.println("Digite quantos numéros deseja somar");
         qnt = leitor.nextInt();
 
         for (int i = 0; i < qnt; i++) {
             try {
-                System.out.println("Digite o primeiro numero");
+                System.out.println("Digite um número numero");
                 x = leitor.nextInt();
-                System.out.println("Digite o segundo numero");
-                y = leitor.nextInt();
-
-                if ((x + y) > 100) {
+                
+                y+=x;
+                        
+                if (y > 100) {
                     throw new ExcecaoAcimaDeCem();
                 }
 
-                System.out.println(x + " + " + y + " = " + (x + y));
+                System.out.println(" soma dos números digitados " + " = " +  y);
                 
             } catch (ExcecaoAcimaDeCem e) {
                 System.out.println(e.toString());
+                break;
             }
         }
-
+        double media = (y*1.0)/qnt;
+        System.out.println("Media = " + media);
     }
 }
