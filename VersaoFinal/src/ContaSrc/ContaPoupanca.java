@@ -1,12 +1,10 @@
 package ContaSrc;
 
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class ContaPoupanca extends Conta {
 
-    public ContaPoupanca(Cliente cliente) throws ParseException {
+    public ContaPoupanca(Cliente cliente) {
         super(cliente);
     }
 
@@ -17,11 +15,8 @@ public class ContaPoupanca extends Conta {
 
     @Override
     public void imprimirExtrato() {
-        try {
-            System.out.println("=== Extrato Conta Poupança ===");
-            super.imprimirInfosComuns();
-        } catch (ParseException ex) {
-            Logger.getLogger(ContaPoupanca.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JOptionPane.showMessageDialog(null, "=== Extrato Conta Poupança ===\n"
+                + super.imprimirInfos()
+                + super.imprimirHistorico());
     }
 }

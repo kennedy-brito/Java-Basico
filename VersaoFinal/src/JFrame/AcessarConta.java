@@ -4,8 +4,12 @@
  */
 package JFrame;
 
+import ContaSrc.Conta;
+import Crud.CRUD;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -13,8 +17,9 @@ import javax.swing.text.MaskFormatter;
  */
 public class AcessarConta extends javax.swing.JFrame {
 
-    int numero;
+    Conta conta;
     String dados;
+    static double valor = 0.0;
 
     /**
      * Creates new form AcessarConta
@@ -23,9 +28,9 @@ public class AcessarConta extends javax.swing.JFrame {
         initComponents();
     }
 
-    public AcessarConta(int numero, String dados) {
-        this.numero = numero;
-        this.dados = dados;
+    public AcessarConta(Conta conta) throws ParseException {
+        this.conta = conta;
+        this.dados = conta.imprimirInfos();
         initComponents();
         exibicaoDados.setText(dados);
     }
@@ -44,8 +49,14 @@ public class AcessarConta extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         exibicaoDados = new javax.swing.JTextArea();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(640, 360));
+        setPreferredSize(new java.awt.Dimension(650, 398));
+        getContentPane().setLayout(null);
 
         jButton1.setText("Sacar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -53,6 +64,8 @@ public class AcessarConta extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(400, 150, 100, 22);
 
         jButton2.setText("Depositar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +73,8 @@ public class AcessarConta extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(400, 110, 100, 22);
 
         jButton3.setText("Transferir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -67,75 +82,103 @@ public class AcessarConta extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(400, 190, 100, 22);
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
+        exibicaoDados.setEditable(false);
         exibicaoDados.setColumns(20);
         exibicaoDados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         exibicaoDados.setRows(5);
         jScrollPane1.setViewportView(exibicaoDados);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
-                .addGap(55, 55, 55))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jButton2)
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(150, 110, 200, 180);
+
+        jButton4.setText("Extrato");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(400, 230, 100, 22);
+
+        jButton5.setText("Sair");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(400, 270, 100, 22);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JFrame/x1.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jLabel1.setMinimumSize(new java.awt.Dimension(640, 360));
+        jLabel1.setPreferredSize(new java.awt.Dimension(640, 360));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 640, 350);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+        lerValor();
+        conta.sacar(valor);
+        dados = conta.imprimirInfos();
+        exibicaoDados.setText(dados);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String numero;
-        Double valor;
+        lerValor();
+        conta.depositar(valor);
+        dados = conta.imprimirInfos();
+        exibicaoDados.setText(dados);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String c;
+        int numero = 0;
         boolean repete;
+        /*essa estrutura de repetição impede que o programa leia uma letra
+          ou um número que não seja inteiro
+         */
         do {
             try {
-                numero = JOptionPane.showInputDialog(null, "Informe o Valor: ");
-                numero = numero.replace(",", ".");
-                valor = Double.parseDouble(numero);
+                c = JOptionPane.showInputDialog(null, "Digite o número da conta para transferir: ");
+                numero = Integer.parseInt(c);
                 repete = false;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Digite um número válido!");
                 repete = true;
             }
-        }while(repete);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        } while (repete);
+        Conta contaTransferir = CRUD.acessarContaPorNumero(numero);
+        lerValor();
+        if (contaTransferir != null) {
+            conta.transferir(valor, contaTransferir);
+            dados = conta.imprimirInfos();
+            exibicaoDados.setText(dados);
+        } else {
+            JOptionPane.showMessageDialog(null, "A conta destino não existe");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        conta.imprimirExtrato();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,11 +215,33 @@ public class AcessarConta extends javax.swing.JFrame {
         });
     }
 
+    static void lerValor() {
+        String numero;
+
+        //verifica se o valor digitado está correto
+        boolean repete;
+        do {
+            try {
+                numero = JOptionPane.showInputDialog(null, "Informe o Valor: ");
+                numero = numero.replace(",", ".");
+                valor = Double.parseDouble(numero);
+                repete = false;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Digite um número válido!");
+                repete = true;
+            }
+        } while (repete);
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea exibicaoDados;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

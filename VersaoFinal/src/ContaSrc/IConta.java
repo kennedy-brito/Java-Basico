@@ -1,6 +1,5 @@
 package ContaSrc;
 
-import java.text.ParseException;
 
 public interface IConta {
 

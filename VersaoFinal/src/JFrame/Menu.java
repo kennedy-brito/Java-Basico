@@ -4,9 +4,12 @@
  */
 package JFrame;
 
+import ContaSrc.Conta;
 import Crud.CRUD;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -14,7 +17,6 @@ import javax.swing.JOptionPane;
  */
 public class Menu extends javax.swing.JFrame {
 
-    
     /**
      * Creates new form Programa
      */
@@ -38,8 +40,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(640, 360));
-        setPreferredSize(new java.awt.Dimension(640, 360));
+        setTitle("Menu");
+        setMinimumSize(new java.awt.Dimension(640, 0));
+        setPreferredSize(new java.awt.Dimension(650, 398));
         getContentPane().setLayout(null);
 
         jButton2.setText("Criar Conta");
@@ -49,7 +52,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(250, 110, 130, 23);
+        jButton2.setBounds(250, 110, 130, 22);
 
         jButton3.setText("Acessar Conta");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -58,11 +61,16 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(250, 190, 130, 23);
+        jButton3.setBounds(250, 190, 130, 22);
 
         jButton4.setText("Listar Contas");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4);
-        jButton4.setBounds(250, 230, 130, 23);
+        jButton4.setBounds(250, 230, 130, 22);
 
         jButton5.setText("Excluir Conta");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -71,42 +79,73 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(250, 150, 130, 23);
+        jButton5.setBounds(250, 150, 130, 22);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JFrame/x1.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(640, 640));
-        jLabel1.setMinimumSize(new java.awt.Dimension(640, 640));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, -20, 630, 380);
+        jLabel1.setBounds(0, -30, 650, 420);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        //abre a janela
         CriarConta criarConta = new CriarConta();
         criarConta.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        //abre a janela
         ExcluirConta excluirConta = new ExcluirConta();
         excluirConta.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String c;
-        int numero;
-        
-        c = JOptionPane.showInputDialog(null, "Digite o número da conta: ");
-        numero = Integer.parseInt(c);
+        int numero = 0;
+        boolean repete;
+        /*essa estrutura de repetição impede que o programa leia uma letra
+          ou um número que não seja inteiro
+         */
+        do {
+            try {
+                c = JOptionPane.showInputDialog(null, "Digite o número da conta: ");
+                numero = Integer.parseInt(c);
+                repete = false;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Digite um número válido!");
+                repete = true;
+            }
+        } while (repete);
+
+        /*o programa busca a conta a ser acessada,
+          caso a encontre, abre a janela para realizar as operações
+          caso não a encontre, informa ao usuário que a conta não foi encontrada
+         */
         AcessarConta acessarConta;
-        acessarConta = new AcessarConta(numero, CRUD.acessarContaPorNumero(numero));
-        acessarConta.setVisible(true);
-        
+        Conta conta = CRUD.acessarContaPorNumero(numero);
+        if (conta != null) {
+
+            try {
+                acessarConta = new AcessarConta(conta);
+                acessarConta.setVisible(true);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Conta não encontrada");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

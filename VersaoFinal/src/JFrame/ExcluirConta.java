@@ -40,11 +40,13 @@ public class ExcluirConta extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(640, 360));
+        setPreferredSize(new java.awt.Dimension(650, 398));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Digite o número da conta:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(50, 110, 191, 40);
+        jLabel1.setBounds(220, 110, 191, 40);
 
         jButton1.setText("Deletar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +55,7 @@ public class ExcluirConta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(50, 280, 72, 23);
+        jButton1.setBounds(210, 280, 80, 22);
 
         numero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +71,7 @@ public class ExcluirConta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(numero);
-        numero.setBounds(50, 160, 144, 22);
+        numero.setBounds(220, 160, 144, 22);
 
         jButton2.setText("Sair");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -78,10 +80,12 @@ public class ExcluirConta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(140, 280, 54, 23);
+        jButton2.setBounds(310, 280, 80, 22);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/JFrame/x1.png"))); // NOI18N
         jLabel2.setText("jLabel2");
+        jLabel2.setMinimumSize(new java.awt.Dimension(640, 360));
+        jLabel2.setPreferredSize(new java.awt.Dimension(640, 360));
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 640, 360);
 
@@ -89,13 +93,17 @@ public class ExcluirConta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-            // TODO add your handling code here:
-            CRUD crud = new CRUD();
-            
-            int numeroConta = Integer.parseInt(numero.getText());
-            CRUD.deletarContaPorNumero(numeroConta);
-        
+
+        // TODO add your handling code here:
+        /*tenta deletar a conta e informa se foi possível ou não
+        */
+        int numeroConta = Integer.parseInt(numero.getText());
+        if (CRUD.deletarContaPorNumero(numeroConta)) {
+            JOptionPane.showMessageDialog(null, "Conta deletada");
+        } else {
+            JOptionPane.showMessageDialog(null, "Conta não deletada");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void numeroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroKeyPressed
@@ -109,7 +117,7 @@ public class ExcluirConta extends javax.swing.JFrame {
     private void numeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numeroKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(!Character.isDigit(c)){
+        if (!Character.isDigit(c)) {
             evt.consume();
         }
     }//GEN-LAST:event_numeroKeyTyped

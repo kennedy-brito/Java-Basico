@@ -1,17 +1,15 @@
 package ContaSrc;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.text.MaskFormatter;
+import javax.swing.JOptionPane;
 
 public abstract class Conta implements IConta {
 
-    private static final int AGENCIA_PADRAO = 1;
-    private final double LIMITE = 1000;
-    private static int SEQUENCIAL = 1;
+    private static final int AGENCIA_PADRAO = 1; //toda conta criada tem a mesma agencia
+    private final double LIMITE = 5000; //a conta não aceita operações acima de R$5000.00
+    private static int SEQUENCIAL = 1;  //o número da conta é representado pelo valor do sequencial, a 1ª conta tem número 1, a 2ª tem número 2 e assim por diante
     private final SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-    private MaskFormatter mascara;
 
     private int agencia;
     private int numero;
@@ -20,18 +18,16 @@ public abstract class Conta implements IConta {
     private String historico = "";
     private Date data;
 
-    public Conta(Cliente cliente) throws ParseException {
+    public Conta(Cliente cliente) {
         this.agencia = Conta.AGENCIA_PADRAO;
         this.numero = SEQUENCIAL++;
         this.cliente = cliente;
-//        mascara = new MaskFormatter("###.###.###-##");
-//        mascara.setValidCharacters("0123456789");
-//        mascara.setValueContainsLiteralCharacters(false);
     }
 
     @Override
     public void sacar(double valor) {
         try {
+            //Ocorre erro se o saldo for insuficiente ou o valor de saque for acima do limite
             if (saldo < valor) {
                 throw new ContaException("Saldo insuficiente!\n");
             }
@@ -42,7 +38,7 @@ public abstract class Conta implements IConta {
             data = new Date();
             historico += "\n" + formatoData.format(data) + ": Saque de R$" + valor;
         } catch (ContaException e) {
-            System.out.println(e.toString());
+            JOptionPane.showMessageDialog(null, e.toString());
         }
     }
 
@@ -56,11 +52,16 @@ public abstract class Conta implements IConta {
     @Override
     public void transferir(double valor, Conta contaDestino) {
         try {
+            //Ocorre erro se o saldo for insuficiente, o valor de transferência for acima do limite
+            //ou a conta destino da transfência tiver o mesmo número
             if (saldo < valor) {
                 throw new ContaException("Saldo insuficiente!\n");
             }
             if (valor > LIMITE) {
                 throw new ContaException("Limite ultrapassado!\n");
+            }
+            if (contaDestino.getNumero() == this.numero) {
+                throw new ContaException("O número informado é o desta conta");
             }
             this.sacar(valor);
             contaDestino.depositar(valor);
@@ -68,7 +69,8 @@ public abstract class Conta implements IConta {
             historico += "\n" + formatoData.format(data) + ": Transferencia de R$" + valor
                     + " para a conta " + contaDestino.numero;
         } catch (ContaException e) {
-            System.out.println(e.toString());
+
+            JOptionPane.showMessageDialog(null, e.toString());
         }
     }
 
@@ -88,26 +90,29 @@ public abstract class Conta implements IConta {
     public double getSaldo() {
         return saldo;
     }
-    
-    
-    public String imprimirInfos() throws ParseException {
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    //imprime as informações básicas da conta
+    public String imprimirInfos() {
         return "Titular: " + this.cliente.getNome()
                 + "\nCPF: " + this.cliente.getCPF()
-                + "\nAgencia: " + this.agencia
-                + "\nNumero: " + this.numero
+                + "\nAgência: " + this.agencia
+                + "\nNúmero: " + this.numero
                 + "\nTipo: " + tipo()
-                + "\nSaldo: " + this.saldo;
+                + String.format("\nSaldo: %.2f", this.saldo);
     }
 
-    protected void imprimirInfosComuns() throws ParseException {
-        System.out.println("\nTitular: " + this.cliente.getNome());
-        System.out.println("\nCPF: " + this.cliente.getCPF());
-        System.out.println("Agencia: " + this.agencia);
-        System.out.println("Numero: " + this.numero);
-        System.out.println(String.format("Saldo: %.2f", this.saldo));
-        System.out.println("===================");
-        System.out.println(historico);
-        System.out.println("===================");
+    //imprime o histórico de transações da conta
+    public String imprimirHistorico() {
+        return "\n==================="
+                + historico
+                + "\n===================";
 
     }
+
+    @Override
+    public abstract void imprimirExtrato();
 }
