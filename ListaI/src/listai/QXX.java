@@ -15,12 +15,11 @@ public class QXX {
 //      Faça um programa que leia várias idades e que calcule e imprima a média 
 //      dessas idades. Escolha entre as estruturas de repetição 
 //      DO_WHILE, FOR ou WHILE para implementar ao algoritmo.
-        int i;
         double x, age, sum = 0, media;
         
         x = Double.parseDouble(JOptionPane.showInputDialog("Deseja calcular a média de quantas idades?"));
         
-        for(i=0 ; i<x ; i++){
+        for(int i=0 ; i<x ; i++){
             age = Double.parseDouble(JOptionPane.showInputDialog("Digite a " + (i+1) + "ª idade"));
             sum+=age;
         }

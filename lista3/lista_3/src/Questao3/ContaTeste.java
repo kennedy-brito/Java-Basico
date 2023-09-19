@@ -18,6 +18,7 @@ public class ContaTeste {
         else{
             System.out.println("Operação cancelada");
         }
+        System.out.println("");
         
     //• Tente depositar R$ 1.500,00 reais na conta poupança. conclui
         System.out.println("Depositar R$1.500,00 na poupança");
@@ -27,15 +28,17 @@ public class ContaTeste {
         else{
             System.out.println("Operação cancelada");
         }
+        System.out.println("");
         
     //• Deposite R$ 98,52 na conta poupança. conclui
-        System.out.println("Depositar R$98,52,00 na poupança");
+        System.out.println("Depositar R$98,52 na poupança");
         if(poupanca.depositar(98.52)){
             System.out.println("Operação concluída");
         }
         else{
             System.out.println("Operação cancelada");
         }
+        System.out.println("");
         
     //• Tente sacar R$ 100,00 da poupança. conclui
         System.out.println("Sacar R$100,00 na poupança");
@@ -45,6 +48,7 @@ public class ContaTeste {
         else{
             System.out.println("Operação cancelada");
         }
+        System.out.println("");
         
     //• Transfira R$ 1.800,00 da corrente para a conta poupança. falha        
         System.out.println("Transferir R$1.800,00 da corrente para a poupança");
@@ -54,7 +58,8 @@ public class ContaTeste {
         else{
             System.out.println("Operação cancelada");
         }
-    
+        System.out.println("");
+        
     //• Transfira R$ 700,00 da poupança para a conta corrente. falha
         System.out.println("Transferir R$700,00 da poupança para a corrente");
         if(poupanca.tranferir(700, corrente)){
@@ -63,7 +68,8 @@ public class ContaTeste {
         else{
             System.out.println("Operação cancelada");
         }
-    
+        System.out.println("");
+        
     //• Saque R$ 1.000,00 da corrente. falha
         System.out.println("Sacar R$1.000 da corrente");
         if(corrente.sacar(1000)){

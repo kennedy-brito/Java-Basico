@@ -40,30 +40,34 @@ public class Conta {
     }
     
     public boolean depositar(double valor){
-        if(("Corrente".equals(this.tipo) && valor>1000) || valor < 0 ){
+        //encerra a operação se o tipo é corrente e o valor é superior a 1000, ou se o valor é negativo
+        if((this.tipo.equals("Corrente") && valor>1000) || valor < 0 ){
             return false;
-        }else{
-            this.saldo = saldo + valor;
-            return true;
         }
+        this.saldo = saldo + valor;
+        return true;
+        
     }    
     
     public boolean sacar(double valor){
-        if( (saldo - valor < 0 ) || valor > saldo || valor < 0 ){
+        if(valor > saldo || valor < 0 ){
             return false;
-        }else{
-            this.saldo = saldo - valor;
-            return true;
         }
+        this.saldo = saldo - valor;
+        return true;
+        
     }
     
     public boolean tranferir(double valor, Conta contaDestino){
-        if(!"Corrente".equals(this.tipo) || valor < 0 || valor > this.saldo || (saldo - valor < 0 )){
+        //se não é Corrente, significa que é poupança, e poupança pode transferir somente para poupança
+        if((!this.tipo.equals("Corrente") && contaDestino.getTipo().equals("Corrente"))
+                || valor < 0 
+                || valor > this.saldo){
             return false;
-        }else{
-            contaDestino.setSaldo(contaDestino.getSaldo() + valor);
-            this.saldo = saldo - valor;
-            return true;
         }
+        contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+        this.saldo = saldo - valor;
+        return true;
+        
     }
 }
