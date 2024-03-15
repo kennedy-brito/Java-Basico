@@ -24,13 +24,13 @@ public class Conta {
             }else{
                 if(saldo<valor){
                     System.out.println("saldo insuficiente");
-                    throw new ContaExcecao();
+                   // throw new ContaExcecao();;
                 }else{
                     System.out.println("Valor acima do limite");
-                    throw new ContaExcecao();
+                    //throw new ContaExcecao();
                 }
             }
-        }catch(ContaExcecao e){
+        }catch(Exception e){
             System.out.println(e.toString());
         }
     }

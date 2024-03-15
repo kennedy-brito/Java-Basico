@@ -10,3 +10,9 @@ public interface IConta {
 
     void imprimirExtrato();
 }
+
+/*
+Interface que representa objetos geometricos
+
+    double calcularArea();
+*/

@@ -11,6 +11,12 @@ import java.util.Scanner;
  *
  * @author cliente
  */
+/*
+1- Identificar onde pode ocorrer erros
+2- Tratar esses erros, usando try-catch
+3- Informar ao usuário qual erro ocorreu
+4- Obrigar o usuário a informar um valor correto
+*/
 public class Questao13 {
 
     public static void main(String[] args) {
@@ -20,11 +26,14 @@ public class Questao13 {
         while (true) {
             try {
                 dividir();
+                /*SE OCORRER ERRO O QUE ESTA ABAIXO NÃO OCORRE*/
                 break;
             } catch (ArithmeticException e) {
                 System.out.println("<ERRO!> Não é possivel divisões por 0(zero)!");
             } catch (InputMismatchException e) {
                 System.out.println("<ERRO!> por favor, digite um número inteiro!");
+            } catch (Exception e){
+                System.out.println(e.toString());
             }
         }
     }
@@ -33,6 +42,7 @@ public class Questao13 {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Informe o primeiro valor");
         int x = teclado.nextInt();
+        
         System.out.println("Informe o segundo valor");
         int y = teclado.nextInt();
 

@@ -4,7 +4,6 @@ import ContaSrc.ContaPoupanca;
 import ContaSrc.Conta;
 import ContaSrc.ContaCorrente;
 import ContaSrc.Cliente;
-import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +21,7 @@ public class Main {
             
             cc.imprimirExtrato();
             poupanca.imprimirExtrato();
-        } catch (ParseException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

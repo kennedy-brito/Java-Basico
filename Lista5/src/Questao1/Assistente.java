@@ -14,6 +14,7 @@ public class Assistente extends Funcionario{
         super(nome, matricula, salarioBase);
     }
     
+    @Override
     public double calculaSalario(){
         return super.getSalarioBase();
     }

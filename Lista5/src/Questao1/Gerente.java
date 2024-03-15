@@ -10,8 +10,10 @@ package Questao1;
  */
 public class Gerente extends Funcionario{
 
+    private String setor;
     public Gerente(String nome, String matricula, double salarioBase) {
-        super(nome, matricula, salarioBase);
+        super(nome,matricula,salarioBase);
+        
     }
     
     @Override

@@ -11,8 +11,13 @@ package Questao14;
 public class Questao14 {
      public static void main(String[] args) {
         Conta minhaConta = new Conta();
+        try{
+         
         minhaConta.deposita(100);
         minhaConta.setLimite(100);
-        minhaConta.saca(1000);
+        minhaConta.saca(1000);   
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
     }
 }

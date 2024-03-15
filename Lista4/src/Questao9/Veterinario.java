@@ -9,16 +9,16 @@ import Questao7.Cachorro;
 import Questao7.Cavalo;
 import Questao7.Preguica;
 
-/**
- *
- * @author LabII-10
- */
+
 public class Veterinario {
     public static void examinar(Animal a){
         a.emitirSom();
     }
     
     public static void main(String[] args) {
+        /*
+        Polimorfismo ocorre somente quando um objeto é subtipo de outro
+        */
         Animal cachorro = new Cachorro() ;
         Animal cavalo = new Cavalo() ;
         Animal preguica = new Preguica() ;
